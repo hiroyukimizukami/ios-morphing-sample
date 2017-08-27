@@ -22,10 +22,14 @@ class ViewController: UIViewController {
         self.small.alpha = 1.0
         self.defaultBigRect = self.big.frame
         self.defaultSmallRect = self.small.frame
+
+        UIViewPropertyAnimator(duration: 0.0, curve: .linear) {
+                self.transform(self.big, to: self.defaultSmallRect.size)
+        }.startAnimation()
     }
 
     @IBAction func buttonTapped(_ sender: Any) {
-        let scale = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 1) {
+        let scale = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn) {
             if self.big.alpha == 0.0 {
                 self.transform(self.small, to: self.defaultBigRect.size)
                 self.big.transform =  CGAffineTransform.identity
